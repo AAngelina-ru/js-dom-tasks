@@ -9,3 +9,26 @@
     The computer was born to solve problems that did not exist before.
   </body>
 </html>
+
+// Ждём полной загрузки DOM, так как скрипт находится в <head>
+document.addEventListener('DOMContentLoaded', function() {
+  // Получаем текущее содержимое body как текст
+  const body = document.body;
+  const text = body.innerText;   // или textContent – оба работают
+  
+  // Разбиваем текст на предложения (точка + пробел)
+  // Регулярное выражение разделяет, но сохраняет точки
+  const sentences = text.match(/[^.!?]+[.!?]+/g);
+  
+  if (sentences) {
+    // Очищаем body
+    body.innerHTML = '';
+    
+    // Для каждого предложения создаём <p> и добавляем в body
+    sentences.forEach(sentence => {
+      const p = document.createElement('p');
+      p.textContent = sentence.trim();
+      body.appendChild(p);
+    });
+  }
+});
