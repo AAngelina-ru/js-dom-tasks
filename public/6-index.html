@@ -12,3 +12,53 @@
     <script type="module" src="../solutions/6-index.js" ></script>
   </body>
 </html>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Direct text from DIVs</title>
+    <style>
+        body { font-family: system-ui; padding: 1rem; }
+        .result { background: #f0f0f0; padding: 1rem; border-radius: 8px; }
+        .result div { margin: 0.25rem 0; }
+    </style>
+</head>
+<body>
+    <!-- исходная разметка -->
+    <div>
+        <div>complex<div>test</div></div>
+        <div>Text</div>
+        <p>Op</p>
+    </div>
+    <div>My</div>
+
+    <hr />
+    <h3>Прямой текст из каждого &lt;div&gt; (без вложенных):</h3>
+    <div class="result" id="output"></div>
+
+    <script>
+        // Выбираем все div на странице
+        const divs = document.querySelectorAll('div');
+        const output = document.getElementById('output');
+
+        divs.forEach(div => {
+            let directText = '';
+            // Проходим по дочерним узлам, берём только текстовые
+            for (const node of div.childNodes) {
+                if (node.nodeType === Node.TEXT_NODE) {
+                    directText += node.textContent;
+                }
+            }
+            const trimmed = directText.trim();
+            if (trimmed) {
+                // Показываем результат на странице
+                const line = document.createElement('div');
+                line.textContent = `👉 "${trimmed}"`;
+                output.appendChild(line);
+                // Дополнительно выводим в консоль
+                console.log(trimmed);
+            }
+        });
+    </script>
+</body>
+</html>
