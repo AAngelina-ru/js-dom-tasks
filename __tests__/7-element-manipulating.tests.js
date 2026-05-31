@@ -20,3 +20,16 @@ test('normalize 3', () => {
   normalize(document);
   expect(document.body.innerHTML).toEqual(expected);
 });
+
+const normalize = (document) => {
+  const elements = document.querySelectorAll('[class]');
+  elements.forEach((element) => {
+    const classNames = element.className.split(/\s+/).filter((c) => c);
+    const camelCaseClassNames = classNames.map((className) =>
+      className.replace(/-([a-z])/g, (_, char) => char.toUpperCase())
+    );
+    element.className = camelCaseClassNames.join(' ');
+  });
+};
+
+export default normalize;
