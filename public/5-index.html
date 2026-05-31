@@ -1,22 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <script type="module" src="../solutions/5-index.js" defer></script>
-  </head>
-  <body>
-    <div class="content">
-      <h1>Category Name</h1>
-      <div class="description">Category Description</div>
-      <div class="links">
-        <div>
-          <h2><a href="#">Article Name 1</a></h2>
-          <p>Article Description 1</p>
-        </div>
-        <div>
-          <h2><a href="#">Article Name 2</a></h2>
-          <p>Article Description 2</p>
-        </div>
-      </div>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Категория: пример</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f7fb;
+      margin: 0;
+      padding: 2rem;
+    }
+    .content {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 1.5rem;
+      padding: 2rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    }
+    h1 {
+      font-size: 2rem;
+      margin-top: 0;
+      color: #1e293b;
+    }
+    .description {
+      color: #475569;
+      border-left: 4px solid #3b82f6;
+      padding-left: 1rem;
+      margin: 1rem 0 2rem 0;
+    }
+    .links > div {
+      border-bottom: 1px solid #e2e8f0;
+      padding: 1.25rem 0;
+    }
+    .links > div:last-child {
+      border-bottom: none;
+    }
+    h2 {
+      margin: 0 0 0.5rem 0;
+    }
+    h2 a {
+      color: #0f172a;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    h2 a:hover {
+      color: #3b82f6;
+      cursor: pointer;
+    }
+    p {
+      margin: 0;
+      color: #475569;
+    }
+    .note {
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      color: #64748b;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<div class="content">
+  <h1>⭐ Интересные статьи</h1>
+  <div class="description">Кликните на название любой статьи — увидите её описание</div>
+  <div class="links">
+    <div>
+      <h2><a href="#">Как улучшить продуктивность</a></h2>
+      <p>Практические советы по тайм-менеджменту и фокусировке.</p>
     </div>
-  </body>
+    <div>
+      <h2><a href="#">Основы современного CSS</a></h2>
+      <p>Grid, Flexbox, переменные и новые возможности.</p>
+    </div>
+  </div>
+  <div class="note">💡 Подсказка: описание показывается в alert-окне, ссылка не перезагружает страницу</div>
+</div>
+
+<script>
+  // Правильный интерактив: при клике на заголовок – показываем описание статьи
+  document.querySelectorAll('.links h2 a').forEach(link => {
+    link.addEventListener('click', function(event) {
+      event.preventDefault();          // отменяем переход по "#"
+      const parentDiv = this.closest('div');  // находим родительский div с заголовком и описанием
+      const description = parentDiv.querySelector('p').innerText;
+      alert(description);
+    });
+  });
+</script>
+</body>
 </html>
