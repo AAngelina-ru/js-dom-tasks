@@ -17,3 +17,20 @@ test('index', async () => {
   };
   expect(spy).toHaveBeenCalledWith(expected);
 });
+
+
+// solutions/5-index.js
+const categoryTitleElement = document.querySelector('.category-title');
+const categoryDescriptionElement = document.querySelector('.category-description');
+const itemElements = document.querySelectorAll('.item');
+const items = Array.from(itemElements).map(item => {
+  const title = item.querySelector('.item-title').textContent;
+  const description = item.querySelector('.item-description').textContent;
+  return { title, description };
+});
+const result = {
+  title: categoryTitleElement.textContent,
+  description: categoryDescriptionElement.textContent,
+  items: items
+};
+console.log(result);
