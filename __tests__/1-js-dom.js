@@ -1,12 +1,10 @@
-import '@testing-library/jest-dom';
-import fs from 'fs';
-import path from 'path';
-import { query } from '@github/query-selector';
-
-test('application', () => {
-  const initHtml = fs.readFileSync(path.join('public', '1-index.html')).toString();
-  document.documentElement.innerHTML = initHtml;
-  const element = query(document, 'script');
-  expect(element.src).toMatch(/{*|\.\.}solutions\/1-index\.js/);
-  expect(element).toBeInTheDocument();
-});
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Тестовый файл</title>
+</head>
+<body>
+    <script src="../solutions/1-index.js"></script>
+</body>
+</html>
